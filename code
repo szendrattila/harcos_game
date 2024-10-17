@@ -1,0 +1,94 @@
+"""
+Feladat: Harcos játék
+
+Készíts egy Python programot, amely egy harcos küzdelmet szimulál. A program követelményei a következők:
+
+
+
+1. Harcos osztály
+Hozz létre egy Warrior nevű osztályt, amely tartalmazza a harcos tulajdonságait és metódusait:
+__init__(self, name, health, attack_power): Inicializálja a harcos nevét, életerejét és támadási erejét.
+attack(self, other_warrior): Ez a metódus csökkenti az ellenfél életerejét a támadási erővel.
+is_alive(self): Ez a metódus visszatér True értékkel, ha a harcos életereje nagyobb mint 0, és False-al, ha nem.
+
+Védekezés mechanika: A harcosok védekezhetnek is, ami csökkenti a támadások által okozott sebzést.
+
+Random sebzés: A támadások ne legyenek mindig fix erejűek, hanem véletlenszerűen változhassanak egy adott tartományon belül.
+
+Speciális képesség: Minden harcosnak legyen egy speciális képessége, amit véletlenszerűen aktiválhatnak a csatában (pl. kritikus sebzés vagy extra védelem).
+
+Körök számlálása: Legyen nyomon követve, hány kör után győz valaki.
+
+2. Játékmenet
+
+Hozz létre két harcost, akik felváltva támadják egymást, míg egyikük életereje el nem éri a nullát.
+Minden körben jelenítsd meg, hogy melyik harcos támad, és mennyi életereje van az ellenfelének a támadás után.
+Ha egy harcos életereje eléri a nullát, a játék véget ér, és a másik harcos nyer.
+
+
+3. Hibakezelés
+Használj try-except blokkokat arra az esetre, ha valamilyen váratlan hiba lépne fel a harcosok tulajdonságainak beállítása vagy a támadások során.
+"""
+
+import random
+
+korok_szama = 0
+
+kezdes = [0,1]
+
+
+class Warrior:
+    def __init__(self, name, health, attack_power):
+        self.name = name
+        self.health = health
+        self.attack_power = attack_power
+        
+
+    def attack(self, other_warrior):
+        health = self.health - self.attack_power
+        
+
+    def is_alive(self):
+        if self.health > 0:
+            return True
+        else:
+            return False
+
+
+ember1 = Warrior("Pista", 1000, 10 )
+ember2 = Warrior("Ferenc", 1000, 10 )
+
+
+start = int(input("az 1. vagy a 2. kezdjen?: "))
+while True:
+    try:
+        
+        while True:
+            korok_szama += 1
+            print(f"{korok_szama}. kor: ")
+            
+            if start % 2 == 0 :
+                start = start + 1
+                sebzes = random.randint(0, 10)
+                ember2.health = ember2.health - sebzes
+                print(f"{ember2.health} elete maradt a {ember2.name}-nek")
+                
+            print(f"{korok_szama}. kor: ")
+            
+            if start % 2 != 0 :
+                start = start + 1
+                sebzes = random.randint(0, 100)
+                ember1.health = ember1.health - sebzes
+                print(f"{ember1.health} elete maradt a {ember1.name}-nek")
+        
+        
+            
+        if ember1.health or hember2.health <= 0:
+            break
+               
+    finally:
+        print("jatek vege")
+            
+        
+        
+        
